@@ -1,6 +1,6 @@
 {
   "name": "nano-uid",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "A very small speakable id generator.",
   "main": "index.js",
   "scripts": {
