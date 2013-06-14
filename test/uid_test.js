@@ -44,6 +44,42 @@ t.test('uid', function (t) {
     t.end();
   });
 
+  t.test('can degenerate strings', function (t) {
+    var uid = uidFactory();
+    var arr = (new Array(100)).join(',').split(',');
+    var gen = arr.map(function () {
+      return function (done) {
+        return uid.generate(3, done);
+      };
+    });
+    async.parallel(gen, function (err, results) {
+      t.notOk(err);
+      uid.entropy = 10;
+      results.forEach(function (str) {
+        t.notEqual(str, uid.degenerate(str), 'Degenerated strings are not equal.');
+      });
+      t.end();
+    });
+  });
+
+  t.test('generates many ids with entropy', function (t) {
+    var uid = uidFactory();
+    uid.entropy = 10;
+    var arr = (new Array(100)).join(',').split(',');
+    var gen = arr.map(function () {
+      return function (done) {
+        return uid.generate(3, done);
+      };
+    });
+    async.parallel(gen, function (err, results) {
+      t.notOk(err);
+      var unique = _.uniq(results);
+      t.equal(unique.length, results.length);
+      uid.end();
+      t.end();
+    });
+  });
+
   t.end();
 
 });
