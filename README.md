@@ -1,6 +1,36 @@
 # nano-uid
 
-A tiny uid generator.
+A tiny, speakable unique ID generator.
+
+## Install
+
+```shell
+$ npm install nano-uid
+```
+
+## Usage
+
+Use `uid.generate(length, callback)` to generate ids.
+
+By default, `nano-uid` uses an in-memory store to make sure it doesn't create duplicates.
+
+```javascript
+var uidFactory = require('nano-uid');
+var uid = uidFactory();
+
+uid.generate(5, function (err, id) {
+  // id will have a length of 5 (or more, if you're out of 5 letter ids!)
+  console.log(id);
+});
+```
+
+### Bring-your-own memory
+
+If you'd like persistent memory storage, you'll need to provide your own *memorizer*. The default, in-memory memorizer can be found at [lib/memorizer.js] – the API is very simple!
+
+### Entropy
+
+If you want no-so speakable ids you can set `uid.entropy` to some number (0-10) is a good range. This will introduce randomness to the generation.
 
 ## License
 
