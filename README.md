@@ -26,7 +26,7 @@ uid.generate(5, function (err, id) {
 
 ### Bring-your-own memory
 
-If you'd like persistent memory storage, you'll need to provide your own *memorizer*. The default, in-memory memorizer can be found at [lib/memorizer.js] – the API is very simple!
+If you'd like persistent memory storage, you'll need to provide your own *memorizer*. The default, in-memory memorizer can be found at [lib/memorizer.js](lib/memorizer.js) – the API is very simple!
 
 ### Entropy
 
